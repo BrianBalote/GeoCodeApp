@@ -20,12 +20,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 public class MainActivity extends Activity {
 
 	private EditText addressField;
 	private Button geoCodeButton;
 	private TextView latText;
 	private TextView longText;
+	private GoogleMap map;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,8 @@ public class MainActivity extends Activity {
 		geoCodeButton = (Button) findViewById(R.id.geo_code_button);
 		latText = (TextView) findViewById(R.id.lat_text);
 		longText = (TextView) findViewById(R.id.long_text);
+		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+				.getMap();
 
 		geoCodeButton.setOnClickListener(new View.OnClickListener() {
 
@@ -120,6 +128,10 @@ public class MainActivity extends Activity {
 
 				latText.setText("Latitude: " + myLatLngModel.getLatitude());
 				longText.setText("Longitude: " + myLatLngModel.getLongitude());
+
+				map.addMarker(new MarkerOptions().position(new LatLng(
+						myLatLngModel.getLatitude(), myLatLngModel
+								.getLongitude())));
 			}
 		}
 

@@ -136,11 +136,11 @@ public class MainActivity extends Activity {
 				CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
 						latLng, 10);
 
-				map.animateCamera(cameraUpdate);
 				map.clear();
 				map.addMarker(new MarkerOptions().position(new LatLng(
 						myLatLngModel.getLatitude(), myLatLngModel
 								.getLongitude())));
+				map.animateCamera(cameraUpdate);
 			}
 		}
 

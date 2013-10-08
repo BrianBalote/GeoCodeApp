@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -129,6 +131,13 @@ public class MainActivity extends Activity {
 				latText.setText("Latitude: " + myLatLngModel.getLatitude());
 				longText.setText("Longitude: " + myLatLngModel.getLongitude());
 
+				LatLng latLng = new LatLng(myLatLngModel.getLatitude(),
+						myLatLngModel.getLongitude());
+				CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
+						latLng, 10);
+
+				map.animateCamera(cameraUpdate);
+				map.clear();
 				map.addMarker(new MarkerOptions().position(new LatLng(
 						myLatLngModel.getLatitude(), myLatLngModel
 								.getLongitude())));

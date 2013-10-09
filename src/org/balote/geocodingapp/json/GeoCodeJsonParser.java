@@ -28,8 +28,8 @@ public class GeoCodeJsonParser {
 			JSONObject locationJsonObj = geometryJsonObj
 					.getJSONObject("location");
 
-			long lat = locationJsonObj.getLong("lat");
-			long lng = locationJsonObj.getLong("lng");
+			double lat = locationJsonObj.getDouble("lat");
+			double lng = locationJsonObj.getLong("lng");
 
 			Log.i(TAG, "lat: " + lat);
 			Log.i(TAG, "lng: " + lng);

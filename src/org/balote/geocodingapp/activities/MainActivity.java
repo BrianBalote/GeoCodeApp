@@ -12,10 +12,12 @@ import org.balote.geocodingapp.models.LatLngModel;
 import org.balote.geocodingapp.utils.InputStreamConverterUtil;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -55,6 +57,10 @@ public class MainActivity extends Activity {
 
 				if (address != null && !address.trim().isEmpty()) {
 
+					InputMethodManager imm = (InputMethodManager)getSystemService(
+						      Context.INPUT_METHOD_SERVICE);
+						imm.hideSoftInputFromWindow(addressField.getWindowToken(), 0);
+					
 					String formatedAddress = addressField.getText().toString()
 							.replaceAll(" ", "+");
 
